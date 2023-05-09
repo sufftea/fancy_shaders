@@ -1,10 +1,10 @@
 name: some_shaders
-description: A new Flutter package project.
-version: 0.0.1
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
-  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
@@ -17,6 +17,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-  shaders: 
+  uses-material-design: true
+  shaders:
     - assets/shaders/diagonal_lines.frag
-    - assets/shaders/paper.frag
+    - assets/shaders/grain.frag
