@@ -4,7 +4,6 @@ import 'package:flutter_shaders/flutter_shaders.dart';
 class GrainTexture extends StatelessWidget {
   const GrainTexture({
     required this.child,
-    this.borderRadius,
     this.strength = 0.2,
     this.probability = 0.9,
     super.key,
@@ -12,23 +11,15 @@ class GrainTexture extends StatelessWidget {
 
   final Widget child;
 
-  final Radius? borderRadius;
   final double strength;
   final double probability;
 
   @override
   Widget build(BuildContext context) {
     return ShaderBuilder(
-      (context, shader, _) {
+      (context, shader, child) {
         return AnimatedSampler(
           (image, size, canvas) {
-            if (borderRadius != null) {
-              canvas.clipRRect(RRect.fromRectAndRadius(
-                Offset.zero & size,
-                borderRadius!,
-              ));
-            }
-
             shader
               ..setFloat(0, size.width)
               ..setFloat(1, size.height)
@@ -37,19 +28,15 @@ class GrainTexture extends StatelessWidget {
               ..setImageSampler(0, image);
 
             canvas.drawRect(
-              const Rect.fromLTWH(20, 20, 40, 40),
-              Paint()..color = Colors.red,
-            );
-
-            canvas.drawRect(
               Offset.zero & size,
               Paint()..shader = shader,
             );
           },
-          child: child,
+          child: child!,
         );
       },
       assetKey: 'assets/shaders/grain.frag',
+      child: child,
     );
   }
 }

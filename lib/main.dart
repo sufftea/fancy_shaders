@@ -17,18 +17,24 @@ class MainApp extends StatelessWidget {
         backgroundColor: Colors.green.shade100,
         body: Center(
           child: GrainTexture(
-            borderRadius: const Radius.circular(40),
             strength: 0.2,
             probability: 0.6,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: const ButtonStyle(
-                textStyle: MaterialStatePropertyAll(TextStyle(
-                  fontSize: 60,
-                )),
-                padding: MaterialStatePropertyAll(EdgeInsets.all(40)),
+            child: Padding(
+              padding: const EdgeInsets.all(40),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  )),
+                  elevation: const MaterialStatePropertyAll(20),
+                  textStyle: const MaterialStatePropertyAll(TextStyle(
+                    fontSize: 60,
+                  )),
+                  padding: const MaterialStatePropertyAll(EdgeInsets.all(40)),
+                ),
+                child: const Text('Click the button'),
               ),
-              child: const Text('Click the button'),
             ),
           ),
         ),

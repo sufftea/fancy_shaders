@@ -22,6 +22,10 @@ vec4 shade() {
   vec2 st = FlutterFragCoord().xy / resolution;
   vec4 tc = texture(tex, st);
 
+  if (tc.a < 1) {
+    return tc;
+  }
+
   float r1 = rand(st);
   float r2 = rand(st);
 
