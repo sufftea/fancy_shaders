@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:some_shaders/some_shaders.dart';
+import 'package:some_shaders/diagonal_shade.dart';
 
 void main() {
   test('adds one to input values', () {

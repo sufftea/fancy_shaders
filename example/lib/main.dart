@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:some_shaders/paper_texture.dart';
+import 'package:some_shaders/grain_texture.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,20 +18,17 @@ class MainApp extends StatelessWidget {
         body: Center(
           child: GrainTexture(
             borderRadius: const Radius.circular(40),
-            strength: -0.9,
-            probability: 0.2,
-            child: Container(
-              padding: const EdgeInsets.all(60),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(40),
+            strength: 0.2,
+            probability: 0.6,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: const ButtonStyle(
+                textStyle: MaterialStatePropertyAll(TextStyle(
+                  fontSize: 60,
+                )),
+                padding: MaterialStatePropertyAll(EdgeInsets.all(40)),
               ),
-              child: const Text(
-                'Something',
-                style: TextStyle(
-                  fontSize: 80,
-                ),
-              ),
+              child: const Text('Click the button'),
             ),
           ),
         ),
