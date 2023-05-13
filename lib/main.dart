@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:some_shaders/shaders/grain_texture.dart';
+import 'package:some_shaders/shaders/faded_button.dart';
+import 'package:some_shaders/shaders/translucent_card.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,29 +15,27 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.green.shade100,
-        body: Center(
-          child: GrainTexture(
-            strength: 0.2,
-            probability: 0.6,
-            child: Padding(
-              padding: const EdgeInsets.all(40),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  )),
-                  elevation: const MaterialStatePropertyAll(20),
-                  textStyle: const MaterialStatePropertyAll(TextStyle(
-                    fontSize: 60,
-                  )),
-                  padding: const MaterialStatePropertyAll(EdgeInsets.all(40)),
-                ),
-                child: const Text('Click the button'),
+        body: Stack(
+          fit: StackFit.passthrough,
+          children: [
+            Positioned.fill(
+              child: Image.network(
+                'https://i.pinimg.com/originals/36/e2/db/36e2db2a504c117a5b4b4441182ed770.jpg',
+                fit: BoxFit.cover,
               ),
             ),
-          ),
+            const Positioned.fill(
+              child: Column(
+                children: [
+                  Spacer(),
+                  TranslucentCard(),
+                  Spacer(),
+                  FadedButton(),
+                  Spacer(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

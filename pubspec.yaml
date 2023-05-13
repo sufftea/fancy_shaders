@@ -21,3 +21,5 @@ flutter:
   shaders:
     - assets/shaders/diagonal_lines.frag
     - assets/shaders/grain.frag
+    - assets/shaders/faded_grain.frag
+    - assets/shaders/glass.frag
