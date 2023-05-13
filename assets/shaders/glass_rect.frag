@@ -7,8 +7,7 @@
 precision mediump float;
 
 uniform vec2 resolution;
-uniform float elevation;
-uniform float density;
+uniform vec4 rect;
 uniform sampler2D tex;
 
 out vec4 fragColor;
@@ -43,20 +42,33 @@ float snoise(vec2 v){
 }
 
 vec4 shade() {
-  // const float elevation = 10;
-  // const float density = 0.2;
+  const float elevation = 30;
+  const float density = 0.1;
 
   vec2 pt = FlutterFragCoord().xy;
   vec2 st = pt / resolution;
 
+  if (pt.x < rect.x
+    || pt.y < rect.y
+    || pt.x > rect.x + rect.z
+    || pt.y > rect.y + rect.w
+  ) {
+    return texture(tex, st);
+  }
+
+  vec2 rt = pt - rect.xy;
+
   vec2 n = vec2(
-    snoise(pt * 2 * density),
-    snoise(pt * density)
+    snoise(rt * 2 * density),
+    snoise(rt * density)
   );
 
+  n = n * n * n;
+
   vec2 reflected = pt + n * elevation;
-  return texture(tex, reflected / resolution);
-  // return vec4(n.x, n.y, 0, 1);
+
+  vec4 col = texture(tex, reflected / resolution);
+  return mix(col, vec4(0.3, 0.6, 1, 1), 0.1);
 }
 
 void main() {

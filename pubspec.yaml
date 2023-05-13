@@ -23,3 +23,4 @@ flutter:
     - assets/shaders/grain.frag
     - assets/shaders/faded_grain.frag
     - assets/shaders/glass.frag
+    - assets/shaders/glass_rect.frag
