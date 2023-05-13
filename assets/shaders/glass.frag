@@ -54,9 +54,17 @@ vec4 shade() {
     snoise(pt * density)
   );
 
+
   vec2 reflected = pt + n * elevation;
-  return texture(tex, reflected / resolution);
-  // return vec4(n.x, n.y, 0, 1);
+  vec4 color = texture(tex, reflected / resolution);
+  
+
+  float edgeTint = clamp(mix(0, 1, 1 - pt.x / 5), 0, 1);
+  edgeTint += clamp(mix(0, 1, 1+(pt.x - resolution.x) / 5), 0, 1);
+  edgeTint += clamp(mix(0, 1, 1 - pt.y / 5), 0, 1);
+  edgeTint += clamp(mix(0, 1, 1+(pt.y - resolution.y) / 5), 0, 1);
+  
+  return mix(color, vec4(1, 1, 1, 1), edgeTint);
 }
 
 void main() {
